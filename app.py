@@ -2,6 +2,7 @@ import os
 import psycopg2
 from flask import Flask, request, jsonify
 from datetime import datetime
+from flask_cors import CORS
 
 def conexao_bd():
     conexao = psycopg2.connect(
@@ -14,6 +15,8 @@ def conexao_bd():
     return conexao
 
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route('/registrar', methods=['POST'])
 def registrar():
