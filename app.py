@@ -42,7 +42,7 @@ def registrar():
         )
         conexao.commit()
 
-        return jsonify({'msg': 'Registro salvo com sucesso'})
+        return jsonify({'msg': '1'})
     except Exception as e:
         print(f'Erro: {e}')
         return jsonify({'erro': str(e)}), 500
