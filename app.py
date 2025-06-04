@@ -55,5 +55,35 @@ def registrar():
         if 'conexao' in locals():
             conexao.close()
 
+
+
+
+@app.route('/consultar', methods=['GET'])
+def consultar_mapa():
+    try:
+        conexao =conexao_bd()
+        cursor = conexao.cursor()
+
+        query = 'SELECT * FROM mapas_rotas'
+        cursor.execute(query)
+        res = cursor.fetchall()
+
+        if res:
+            return jsonify({
+                'msg': res
+            })
+        else:
+            return jsonify({
+                'msg': '0'
+            })
+    except Exception as e:
+        print(f'{e}')
+    finally:
+        cursor.close()
+        conexao.close()
+
+        
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
